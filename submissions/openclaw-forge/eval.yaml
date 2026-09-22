@@ -65,7 +65,7 @@ dataset:
     # Persona, skills, schemas and tools are supplied by the pinned image only.
     files: []
 
-  path: cases
+  path: cases-morning-briefing
   schema: |
     Each case has:
     - input.yaml: agent prompt for producing a morning briefing or analysis panel
