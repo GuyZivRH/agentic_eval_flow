@@ -59,10 +59,11 @@ execution:
     CLIMICROSOFT365_GRAPH_BASE_URL: "https://host.containers.internal:18080"
     CLIMICROSOFT365_NOUPDATE: "1"
     NODE_USE_ENV_PROXY: "1"
-    # Four-batch diagnostic from an 80-message sample of the validated
+    # Four-batch diagnostic from a 40-message sample of the validated
     # 347-message demo4 snapshot. Scores apply to this sample only.
-    FORGE_DIAGNOSTIC_MAIL_WINDOWS: "0:40,215:255"
+    FORGE_DIAGNOSTIC_MAIL_WINDOWS: "0:10,30:40,220:230,240:250"
     FORGE_DIAGNOSTIC_MAILBOX_FINGERPRINT: "9abf19cf76beca024ff50411224cdab2999f56e7fd84730abea753a00abd9396"
+    FORGE_DIAGNOSTIC_BATCH_RECORDS: "10"
 
 dataset:
   workspace:

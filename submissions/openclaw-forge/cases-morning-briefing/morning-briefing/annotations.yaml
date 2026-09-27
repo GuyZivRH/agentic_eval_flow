@@ -1,4 +1,4 @@
-# Ground truth for the 80-message four-batch sample from the complete 347-message
+# Ground truth for the 40-message four-batch sample from the complete 347-message
 # demo4 snapshot. Verify later replies across the full snapshot before treating
 # any ask as open. These labels are NOT full-mailbox recall ground truth.
 expected_mailbox: tbx-demo4@dev.mscloud.ibm.com
@@ -14,7 +14,7 @@ expected_first: "Horizon retention approval or scope/exposure decision; either m
 expected_excluded:
   - "Monday leadership agenda: Victoria explicitly approved the agenda and delegated circulation/follow-ups to David and the relevant leaders."
   - "Northstar governance workflow commitment: Victoria said proceed as drafted and delegated the customer follow-up to Rachel."
-  - "Vendor integration remediation and regional metrics recovery: an approval was already given; execution/status updates are owned by the team."
+  - "Regional metrics recovery: Victoria already approved the plan; execution/status updates are owned by the team."
   - "Newsletters, optional events, automated notifications, and other low-action inbox noise."
 expected_fyi:
   - "Approved Monday leadership agenda and delegated follow-ups, if mentioned at all."

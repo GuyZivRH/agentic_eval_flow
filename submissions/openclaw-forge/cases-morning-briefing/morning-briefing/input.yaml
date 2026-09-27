@@ -8,7 +8,7 @@ prompt: |
   sources available in the workspace. First verify and follow the installed
   daily-briefing skill and its source-retrieval skills.
 
-  This is a sample-only workflow diagnostic. The connector presents 80 messages
+  This is a sample-only workflow diagnostic. The connector presents 40 messages
   selected from a validated 347-message mailbox snapshot, packed into four
   bounded evidence batches. Publish a briefing for the evidence actually
   available, and explicitly say its email coverage is a sample. Do not imply
