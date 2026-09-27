@@ -13,20 +13,16 @@
 name: ibm-forge-monday-briefing-m365
 description: |
   Executive Monday briefing from M365 only (Outlook + calendar).
-  Mailbox: tbx-demo2@dev.mscloud.ibm.com. Slack intentionally omitted.
+  Mailbox: tbx-demo4@dev.mscloud.ibm.com. Slack intentionally omitted.
 
 slack:
   enabled: false
   note: Deferred pending ibm-forge-demo bot token / invite
 
 m365:
-  user: tbx-demo2@dev.mscloud.ibm.com
+  user: tbx-demo4@dev.mscloud.ibm.com
   seed: external
-  expected_themes:
-    - Watson Orchestrate GA go/no-go
-    - Contoso customer escalation
-    - Quantum CapEx reconciliation
-    - Exec strategy offsite prep
+  # No static themes from a different mailbox: evidence is collected live.
 
 # No Crabline/smolclaw seeds — real Graph mailbox is the source of truth.
 crabline_seeds: []

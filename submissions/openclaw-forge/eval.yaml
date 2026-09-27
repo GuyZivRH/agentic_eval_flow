@@ -68,9 +68,10 @@ dataset:
   path: cases-morning-briefing
   schema: |
     Each case has:
-    - input.yaml: agent prompt for producing a morning briefing or analysis panel
-    - annotations.yaml: ground truth expectations (expected items, groupings,
-      facts, sources) used by LLM rubric judges
+    - input.yaml: agent prompt for the morning briefing
+    - annotations.yaml: connected mailbox and required publication contract.
+      A live mailbox has no frozen semantic answer key; do not score recall
+      against unrelated seeded cases.
 
 outputs:
   - path: output
@@ -78,6 +79,42 @@ outputs:
       response.txt: agent final response (morning briefing or analysis panel)
 
 judges:
+  # Judge the published artifact, not a successful CLI turn or prose claim.
+  # The OpenShell runner stages /sandbox/brief.json as output_content only
+  # after a full publication; these checks also protect non-OpenShell runs.
+  - name: published_full_brief
+    if: "annotations.get('required_scope')"
+    check: |
+      import json
+      try:
+          brief = json.loads(outputs.get("output_content") or "")
+      except (TypeError, ValueError):
+          return False
+      return (isinstance(brief, dict)
+              and brief.get("scope") == "full"
+              and bool(brief.get("evidenceId"))
+              and all(isinstance(brief.get(k), list)
+                      for k in ("topOfMind", "fyi", "lookingAhead")))
+    feedback_type: bool
+
+  - name: briefing_evidence_coverage
+    if: "annotations.get('required_scope')"
+    check: |
+      import json
+      try:
+          brief = json.loads(outputs.get("output_content") or "")
+      except (TypeError, ValueError):
+          return False
+      if not isinstance(brief, dict) or brief.get("scope") != "full":
+          return False
+      rows = brief.get("coverage") or []
+      counts = {row.get("id"): row.get("value") for row in rows
+                if isinstance(row, dict)}
+      email = counts.get("email")
+      return (isinstance(email, str) and email.isdecimal()
+              and int(email) > 0)
+    feedback_type: bool
+
   # --- Prioritization judges (morning-briefing case) ---
   - name: prioritization_recall
     if: "annotations.get('expected_top_of_mind')"
