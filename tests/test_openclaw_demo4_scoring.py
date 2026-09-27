@@ -20,15 +20,18 @@ def _judge(name):
     return namespace["check"]
 
 
-def test_scene_and_active_case_use_same_mailbox_without_stale_answer_key():
+def test_scene_and_active_case_use_labeled_demo4_mailbox():
     scene = yaml.safe_load((ROOT / "scenes" / "monday-acquisition.yaml").read_text())
     annotations = yaml.safe_load(
         (ROOT / "cases-morning-briefing" / "morning-briefing" / "annotations.yaml").read_text()
     )
     assert scene["m365"]["user"] == annotations["expected_mailbox"]
     assert scene["m365"]["user"] == "tbx-demo4@dev.mscloud.ibm.com"
-    assert not any(key.startswith("expected_") and key != "expected_mailbox"
-                   for key in annotations)
+    assert annotations["required_scope"] == "full"
+    for key in ("expected_top_of_mind", "expected_excluded", "expected_fyi",
+                "expected_separate", "expected_bundles"):
+        assert annotations[key], key
+    assert "tbx-demo2" not in json.dumps(annotations).lower()
 
 
 def test_full_publication_is_required_not_just_agent_prose():
