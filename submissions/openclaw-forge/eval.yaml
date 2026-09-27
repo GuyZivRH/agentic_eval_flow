@@ -59,6 +59,10 @@ execution:
     CLIMICROSOFT365_GRAPH_BASE_URL: "https://host.containers.internal:18080"
     CLIMICROSOFT365_NOUPDATE: "1"
     NODE_USE_ENV_PROXY: "1"
+    # Short, sample-only end-to-end diagnostic. Never use this run to claim
+    # full-mailbox recall or precision; remove both limits for production evals.
+    FORGE_DIAGNOSTIC_MAIL_LIMIT: "10"
+    FORGE_DIAGNOSTIC_BATCH_RECORDS: "5"
 
 dataset:
   workspace:

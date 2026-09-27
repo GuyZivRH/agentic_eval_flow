@@ -8,6 +8,12 @@ prompt: |
   sources available in the workspace. First verify and follow the installed
   daily-briefing skill and its source-retrieval skills.
 
+  This is a sample-only workflow diagnostic: the inbox connector is capped at
+  ten recent messages and the evidence is packed into small batches. Publish
+  the briefing for the evidence actually available, and explicitly say that
+  its email coverage is a sample, not the full mailbox. Do not imply that an
+  omitted message was reviewed or that this run measures full-mailbox recall.
+
   Produce a structured morning briefing with three sections:
 
   TOP OF MIND — Direct decisions and critical actions requiring the executive's
