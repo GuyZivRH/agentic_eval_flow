@@ -8,11 +8,11 @@ prompt: |
   sources available in the workspace. First verify and follow the installed
   daily-briefing skill and its source-retrieval skills.
 
-  This is a sample-only workflow diagnostic: the inbox connector is capped at
-  ten recent messages and the evidence is packed into small batches. Publish
-  the briefing for the evidence actually available, and explicitly say that
-  its email coverage is a sample, not the full mailbox. Do not imply that an
-  omitted message was reviewed or that this run measures full-mailbox recall.
+  This is a sample-only workflow diagnostic. The connector presents 80 messages
+  selected from a validated 347-message mailbox snapshot, packed into four
+  bounded evidence batches. Publish a briefing for the evidence actually
+  available, and explicitly say its email coverage is a sample. Do not imply
+  omitted messages were reviewed or that this measures full-mailbox recall.
 
   Produce a structured morning briefing with three sections:
 

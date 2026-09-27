@@ -59,10 +59,10 @@ execution:
     CLIMICROSOFT365_GRAPH_BASE_URL: "https://host.containers.internal:18080"
     CLIMICROSOFT365_NOUPDATE: "1"
     NODE_USE_ENV_PROXY: "1"
-    # Short, sample-only end-to-end diagnostic. Never use this run to claim
-    # full-mailbox recall or precision; remove both limits for production evals.
-    FORGE_DIAGNOSTIC_MAIL_LIMIT: "10"
-    FORGE_DIAGNOSTIC_BATCH_RECORDS: "5"
+    # Four-batch diagnostic from an 80-message sample of the validated
+    # 347-message demo4 snapshot. Scores apply to this sample only.
+    FORGE_DIAGNOSTIC_MAIL_WINDOWS: "0:40,215:255"
+    FORGE_DIAGNOSTIC_MAILBOX_FINGERPRINT: "9abf19cf76beca024ff50411224cdab2999f56e7fd84730abea753a00abd9396"
 
 dataset:
   workspace:
@@ -73,9 +73,8 @@ dataset:
   schema: |
     Each case has:
     - input.yaml: agent prompt for the morning briefing
-    - annotations.yaml: connected mailbox and required publication contract.
-      A live mailbox has no frozen semantic answer key; do not score recall
-      against unrelated seeded cases.
+    - annotations.yaml: sampled demo4 mailbox answer key, validated against
+      the complete 347-message snapshot and guarded by its fingerprint.
 
 outputs:
   - path: output
@@ -155,8 +154,9 @@ judges:
       You are evaluating a morning briefing produced by a Chief of Staff agent.
 
       The briefing should NOT include noise in the "Top of Mind" section.
-      Noise includes automated notifications, bot messages, newsletters,
-      birthday greetings, and social posts.
+      Noise includes automated notifications, newsletters, resolved decisions,
+      and follow-ups already delegated to an owner. A subject line saying
+      "approval required" is not sufficient when a later message closes it.
 
       Items that MUST be excluded from Top of Mind:
       {% for item in annotations.expected_excluded %}
