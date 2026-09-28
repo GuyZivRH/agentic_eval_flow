@@ -1,4 +1,4 @@
-# Full demo4 mailbox evaluation — Chief of Staff executive morning briefing.
+# Full demo4 mailbox workflow evaluation — provisional quality labels.
 # Slack remains unavailable in saw-mpk: its governed fence refuses
 # assistant.search.context (HTTP 403). Do not describe these scores as
 # cross-source precision/recall until a separate Slack-labeled case runs.
@@ -72,9 +72,9 @@ dataset:
   schema: |
     Each case has:
     - input.yaml: agent prompt for the morning briefing
-    - annotations.yaml: answer key reviewed against the 347-message demo4
-      mailbox snapshot. Coverage is gated below; update labels when the
-      mailbox contents change.
+    - annotations.yaml: provisional answer key for the 347-message demo4
+      mailbox snapshot. Coverage and identity are gated, but independent
+      exhaustive label review remains necessary for final recall claims.
 
 outputs:
   - path: output
@@ -283,9 +283,8 @@ judges:
     score_range: [1, 5]
     feedback_type: int
 
-  # Email-only full-mailbox case: the published-artifact gates and five
-  # semantic rubrics above are the complete judge set. Do not infer Slack
-  # recall or precision from this run.
+  # Email-only full-mailbox workflow check with provisional semantic labels.
+  # Do not infer Slack recall/precision or exhaustive mail quality from it.
 
 # Thresholds / regression gating disabled for now — scores are still computed
 # and shown in the report; the run will not exit 1 on low rubric means.

@@ -1,7 +1,10 @@
-# Email-only answer key reviewed against the 347-message demo4 snapshot.
+# Provisional email-only answer key for the 347-message demo4 snapshot.
 # The snapshot includes repeated imported copies of older messages. Later
 # replies close several subject lines that otherwise look urgent. Revalidate
-# this key when the live mailbox changes; it is not Slack ground truth.
+# every decision thread independently before interpreting these rubrics as
+# exhaustive full-mailbox recall or precision. The fingerprint guard rejects
+# mailbox drift; it does not prove that this human-authored key is exhaustive.
+# This is not Slack ground truth.
 expected_mailbox: tbx-demo4@dev.mscloud.ibm.com
 minimum_email_count: 347
 required_scope: full
