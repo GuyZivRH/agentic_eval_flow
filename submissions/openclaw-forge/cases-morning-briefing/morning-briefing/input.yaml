@@ -4,12 +4,16 @@ prompt: |
   /sandbox/skills/daily-briefing/SKILL.md, and
   /sandbox/skills/microsoft365/SKILL.md. Do not substitute another workspace or home-directory path.
 
+  Also use the image-owned governed Slack read skill. Include recent channels,
+  mentions, DMs, and the containing threads for relevant matches. Keep Slack
+  retrieval bounded to a small recent sample and report its coverage honestly.
+
   Prepare the user's executive morning briefing using the connected information
   sources available in the workspace. First verify and follow the installed
   daily-briefing skill and its source-retrieval skills.
 
   This is a sample-only workflow diagnostic: the inbox connector is capped at
-  ten recent messages and the evidence is packed into small batches. Publish
+  ten recent email messages and the evidence is packed into small batches. Publish
   the briefing for the evidence actually available, and explicitly say that
   its email coverage is a sample, not the full mailbox. Do not imply that an
   omitted message was reviewed or that this run measures full-mailbox recall.

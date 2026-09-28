@@ -1,4 +1,4 @@
-# IBM Forge M365-only scene (Slack deferred — no bot token yet)
+# Short live M365 + Slack diagnostic scene.
 #
 # seed: external means the Outlook mailbox/calendar is already populated
 # (offline: examples/forge-real/seed_m365_graph.py → ground-truth.json).
@@ -8,16 +8,16 @@
 # Crabline = Slack mock, smolclaw = Gmail/Calendar mock. Those are generic
 # AEH OpenShell seeders, not what Forge uses. Keep both lists empty.
 #
-# Slack channels documented for a future dual-source run; not used this run.
+# Slack is read through the existing governed provider; no mock is seeded.
 
-name: ibm-forge-monday-briefing-m365
+name: ibm-forge-monday-briefing-m365-slack
 description: |
-  Executive Monday briefing from M365 only (Outlook + calendar).
-  Mailbox: tbx-demo4@dev.mscloud.ibm.com. Slack intentionally omitted.
+  Sample executive briefing from connected M365 and Slack sources.
+  Mailbox: tbx-demo4@dev.mscloud.ibm.com. This is not a full-mailbox evaluation.
 
 slack:
-  enabled: false
-  note: Deferred pending ibm-forge-demo bot token / invite
+  enabled: true
+  seed: external
 
 m365:
   user: tbx-demo4@dev.mscloud.ibm.com

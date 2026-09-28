@@ -32,6 +32,7 @@ runner:
     read /sandbox/AGENTS.md first, then read and follow
     /sandbox/skills/daily-briefing/SKILL.md and
     /sandbox/skills/microsoft365/SKILL.md.
+    Also follow the image-owned Slack read skill when collecting Slack evidence.
     Do not rely on skill_workshop to discover these workspace skills.
     Follow the skill files for retrieval and formatting; do not invent
     provider commands or data.
@@ -55,7 +56,7 @@ execution:
   env:
     # Provider placeholders and proxy/CA environment come from the supervisor.
     FORGE_MODEL_ID: "rits/zai-org/glm-5-3"
-    FORGE_SOURCES: "m365-only"
+    FORGE_SOURCES: "m365,slack"
     CLIMICROSOFT365_GRAPH_BASE_URL: "https://host.containers.internal:18080"
     CLIMICROSOFT365_NOUPDATE: "1"
     NODE_USE_ENV_PROXY: "1"
