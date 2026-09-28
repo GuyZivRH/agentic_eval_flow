@@ -57,6 +57,7 @@ execution:
     # Provider placeholders and proxy/CA environment come from the supervisor.
     FORGE_MODEL_ID: "rits/zai-org/glm-5-3"
     FORGE_SOURCES: "m365,slack"
+    SLACK_READ_BASE_URL: "https://host.containers.internal:18082"
     CLIMICROSOFT365_GRAPH_BASE_URL: "https://host.containers.internal:18080"
     CLIMICROSOFT365_NOUPDATE: "1"
     NODE_USE_ENV_PROXY: "1"
