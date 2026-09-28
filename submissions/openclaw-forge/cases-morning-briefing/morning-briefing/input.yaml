@@ -7,6 +7,8 @@ prompt: |
   Prepare the user's executive morning briefing using the connected information
   sources available in the workspace. First verify and follow the installed
   daily-briefing skill and its source-retrieval skills.
+  The evaluation stages a synthetic USER.md for Victoria. Address the brief
+  to that mock executive; do not infer the recipient from mailbox headers.
 
   This is a full-mailbox email/calendar evaluation, not a four-batch sample.
   Use the installed daily-briefing collector to read all available inbox mail

@@ -6,6 +6,7 @@
 # mailbox drift; it does not prove that this human-authored key is exhaustive.
 # This is not Slack ground truth.
 expected_mailbox: tbx-demo4@dev.mscloud.ibm.com
+expected_generated_for: Victoria
 minimum_email_count: 347
 required_scope: full
 required_sections:

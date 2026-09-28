@@ -23,6 +23,9 @@ runner:
   # public OpenAI embeddings endpoint with the namespace inference key.
   # Disable it so the only model request is the intended GLM call.
   settings:
+    # This case uses a mock executive matching the seeded demo4 evidence;
+    # do not replace the namespace's installation-owned USER.md.
+    forge_user_file: mock-user.md
     plugins:
       entries:
         memory-core:
@@ -95,6 +98,7 @@ judges:
           return False
       return (isinstance(brief, dict)
               and brief.get("scope") == "full"
+              and brief.get("generatedFor") == (outputs.get("annotations") or {}).get("expected_generated_for")
               and bool(brief.get("evidenceId"))
               and all(isinstance(brief.get(k), list)
                       for k in ("topOfMind", "fyi", "lookingAhead")))
