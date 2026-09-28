@@ -34,6 +34,15 @@ def test_scene_and_active_case_use_labeled_demo4_mailbox():
     assert "tbx-demo2" not in json.dumps(annotations).lower()
 
 
+def test_closed_decisions_are_not_required_connection_bundles():
+    annotations = yaml.safe_load(
+        (ROOT / "cases-morning-briefing" / "morning-briefing" / "annotations.yaml").read_text()
+    )
+    assert "northstar_governance_closed" not in annotations["expected_bundles"]
+    assert any("Northstar governance workflow commitment" in item
+               for item in annotations["expected_excluded"])
+
+
 def test_full_publication_is_required_not_just_agent_prose():
     check = _judge("published_full_brief")
     assert not check({"output_content": "I completed the briefing"}, {})

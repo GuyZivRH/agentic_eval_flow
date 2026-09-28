@@ -33,6 +33,3 @@ expected_bundles:
   horizon_retention:
     - "Next: Approving Retention Package for Horizon Release: Victoria says final approval awaits the package."
     - "RE: Next: Approving Retention Package for Horizon Release: Elena proposes targeted LTIP grants and spot bonuses; Engineering supports the plan."
-  northstar_governance_closed:
-    - "Northstar Request: Governance Workflow Integration Commitments and draft language."
-    - "RE: Legal and Delivery Approval: Northstar Integration Commitment: Victoria says proceed as drafted and assigns Rachel the customer follow-up."
