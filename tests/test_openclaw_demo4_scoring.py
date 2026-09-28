@@ -44,9 +44,22 @@ def test_full_publication_is_required_not_just_agent_prose():
     assert not check({"output_content": json.dumps(brief)}, {})
 
 
-def test_coverage_requires_email_count_in_published_brief():
+def test_coverage_requires_labeled_full_mailbox_count_in_published_brief():
     check = _judge("briefing_evidence_coverage")
+    annotations = {"minimum_email_count": 347}
     brief = {"scope": "full", "coverage": [{"id": "email", "value": "347"}]}
-    assert check({"output_content": json.dumps(brief)}, {})
-    brief["coverage"][0]["value"] = "0"
+    assert check({"output_content": json.dumps(brief), "annotations": annotations}, {})
+    brief["coverage"][0]["value"] = "346"
+    assert not check({"output_content": json.dumps(brief), "annotations": annotations}, {})
     assert not check({"output_content": json.dumps(brief)}, {})
+
+
+def test_full_mailbox_config_is_not_a_sample_and_requires_snapshot_fingerprint():
+    config = yaml.safe_load((ROOT / "eval.yaml").read_text())
+    env = config["execution"]["env"]
+    assert "FORGE_DIAGNOSTIC_MAIL_WINDOWS" not in env
+    assert "FORGE_DIAGNOSTIC_BATCH_RECORDS" not in env
+    assert len(env["FORGE_EXPECTED_MAILBOX_FINGERPRINT"]) == 64
+    assert yaml.safe_load(
+        (ROOT / "cases-morning-briefing" / "morning-briefing" / "annotations.yaml").read_text()
+    )["minimum_email_count"] == 347

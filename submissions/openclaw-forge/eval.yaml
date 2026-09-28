@@ -114,7 +114,7 @@ judges:
       counts = {row.get("id"): row.get("value") for row in rows
                 if isinstance(row, dict)}
       email = counts.get("email")
-      required = annotations.get("minimum_email_count")
+      required = (outputs.get("annotations") or {}).get("minimum_email_count")
       return (isinstance(email, str) and email.isdecimal()
               and isinstance(required, int) and int(email) >= required)
     feedback_type: bool
