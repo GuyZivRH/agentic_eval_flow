@@ -15,7 +15,9 @@ prompt: |
   entire evidence ledger into one model context. If the collector reports a
   source unavailable or truncated, disclose that limitation rather than
   claiming complete coverage. Slack is not part of this case until its
-  governed read service permits the required search method.
+  governed read service permits the required search method. Select only
+  `microsoft365` for this run through the skill's supported source option;
+  that source includes both inbox mail and calendar events.
 
   Produce a structured morning briefing with three sections:
 
