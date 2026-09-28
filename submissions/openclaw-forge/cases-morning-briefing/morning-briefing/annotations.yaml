@@ -1,6 +1,6 @@
 # The connected mailbox is live. Static themes from a different demo account
 # are not valid ground truth for semantic recall or message grouping.
-expected_mailbox: tbx-demo4@dev.mscloud.ibm.com
+expected_mailbox: tbx-demo2@dev.mscloud.ibm.com
 required_scope: full
 required_sections:
   - topOfMind

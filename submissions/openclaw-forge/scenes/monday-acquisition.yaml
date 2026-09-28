@@ -13,14 +13,14 @@
 name: ibm-forge-monday-briefing-m365-slack
 description: |
   Sample executive briefing from connected M365 and Slack sources.
-  Mailbox: tbx-demo4@dev.mscloud.ibm.com. This is not a full-mailbox evaluation.
+  Mailbox: tbx-demo2@dev.mscloud.ibm.com. This is not a full-mailbox evaluation.
 
 slack:
   enabled: true
   seed: external
 
 m365:
-  user: tbx-demo4@dev.mscloud.ibm.com
+  user: tbx-demo2@dev.mscloud.ibm.com
   seed: external
   # No static themes from a different mailbox: evidence is collected live.
 
