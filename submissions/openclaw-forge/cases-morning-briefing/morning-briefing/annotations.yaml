@@ -1,7 +1,9 @@
-# Ground truth for the 40-message four-batch sample from the complete 347-message
-# demo4 snapshot. Verify later replies across the full snapshot before treating
-# any ask as open. These labels are NOT full-mailbox recall ground truth.
+# Email-only answer key reviewed against the 347-message demo4 snapshot.
+# The snapshot includes repeated imported copies of older messages. Later
+# replies close several subject lines that otherwise look urgent. Revalidate
+# this key when the live mailbox changes; it is not Slack ground truth.
 expected_mailbox: tbx-demo4@dev.mscloud.ibm.com
+minimum_email_count: 347
 required_scope: full
 required_sections:
   - topOfMind
@@ -10,11 +12,15 @@ required_sections:
 expected_top_of_mind:
   - "Horizon targeted retention package: Elena proposed LTIP grants and spot bonuses, Engineering supports it, and final CEO approval is still pending; do not present the proposal as approved."
   - "Horizon release scope: deferring two lower-priority integrations still requires an answer on customer/revenue exposure, especially Northstar, before CEO approval."
-expected_first: "Horizon retention approval or scope/exposure decision; either may rank first if the brief explains urgency and does not claim approval."
+  - "Separate $420K Platform Reliability and AI Infrastructure retention plan: Aisha requested Victoria's approval or advice before board alignment; no approval appears in the snapshot. Do not merge it with Elena's smaller Horizon LTIP/spot-bonus package."
+expected_first: "One of the three unresolved executive decisions—Horizon scope/exposure, Horizon targeted retention, or Aisha's separate $420K platform retention plan—may rank first with an evidence-backed urgency rationale."
 expected_excluded:
   - "Monday leadership agenda: Victoria explicitly approved the agenda and delegated circulation/follow-ups to David and the relevant leaders."
   - "Northstar governance workflow commitment: Victoria said proceed as drafted and delegated the customer follow-up to Rachel."
   - "Regional metrics recovery: Victoria already approved the plan; execution/status updates are owned by the team."
+  - "Northstar model announcement and math-award recognition: Victoria already set the hold-until-readiness-review condition and assigned Lisa the training investigation."
+  - "Northstar incident response, Northstar contract sign-off, quarterly budget variance, and weekly dashboard/board reconciliation: later September 27 replies close or delegate the initiating executive decisions."
+  - "Private employee issue: Victoria acknowledged it and directed a contained decision record; do not expose sensitive details or invent a new open approval."
   - "Newsletters, optional events, automated notifications, and other low-action inbox noise."
 expected_fyi:
   - "Approved Monday leadership agenda and delegated follow-ups, if mentioned at all."
@@ -26,6 +32,9 @@ expected_separate:
   - source_a: "Northstar governance workflow commitment, already approved"
     source_b: "Horizon release customer exposure question involving Northstar"
     reason: "Sharing the Northstar name does not make the approved commitment an open Horizon scope decision."
+  - source_a: "Aisha's $420K Platform Reliability and AI Infrastructure retention plan"
+    source_b: "Elena's targeted LTIP and spot-bonus package for Horizon engineering leads"
+    reason: "Two pending approvals with distinct proposals, amounts, and owners; do not collapse them into one card or claim either is approved."
 expected_bundles:
   horizon_scope:
     - "Horizon Release Scope & Timeline Alignment: Elena asks to defer two lower-priority integrations."

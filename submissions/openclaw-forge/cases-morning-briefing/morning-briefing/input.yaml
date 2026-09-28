@@ -8,11 +8,14 @@ prompt: |
   sources available in the workspace. First verify and follow the installed
   daily-briefing skill and its source-retrieval skills.
 
-  This is a sample-only workflow diagnostic. The connector presents 40 messages
-  selected from a validated 347-message mailbox snapshot, packed into four
-  bounded evidence batches. Publish a briefing for the evidence actually
-  available, and explicitly say its email coverage is a sample. Do not imply
-  omitted messages were reviewed or that this measures full-mailbox recall.
+  This is a full-mailbox email/calendar evaluation, not a four-batch sample.
+  Use the installed daily-briefing collector to read all available inbox mail
+  through bounded evidence batches, verify each batch reported, and publish
+  only after the complete evidence set has been considered. Do not load the
+  entire evidence ledger into one model context. If the collector reports a
+  source unavailable or truncated, disclose that limitation rather than
+  claiming complete coverage. Slack is not part of this case until its
+  governed read service permits the required search method.
 
   Produce a structured morning briefing with three sections:
 

@@ -1,5 +1,7 @@
-# Forge evaluation rubrics — Chief of Staff agent producing executive morning briefing
-# Scene-based: all messages seeded once at run start from scenes/<name>.yaml
+# Full demo4 mailbox evaluation — Chief of Staff executive morning briefing.
+# Slack remains unavailable in saw-mpk: its governed fence refuses
+# assistant.search.context (HTTP 403). Do not describe these scores as
+# cross-source precision/recall until a separate Slack-labeled case runs.
 name: forge-eval-rubrics
 
 scene: monday-acquisition
@@ -51,19 +53,15 @@ runner:
 execution:
   mode: case
   prompt: "{{ input.prompt }}"
-  timeout: 900
+  timeout: 2400
   env:
     # Provider placeholders and proxy/CA environment come from the supervisor.
     FORGE_MODEL_ID: "rits/zai-org/glm-5-3"
-    FORGE_SOURCES: "m365-only"
     CLIMICROSOFT365_GRAPH_BASE_URL: "https://host.containers.internal:18080"
     CLIMICROSOFT365_NOUPDATE: "1"
     NODE_USE_ENV_PROXY: "1"
-    # Four-batch diagnostic from a 40-message sample of the validated
-    # 347-message demo4 snapshot. Scores apply to this sample only.
-    FORGE_DIAGNOSTIC_MAIL_WINDOWS: "0:10,30:40,220:230,240:250"
-    FORGE_DIAGNOSTIC_MAILBOX_FINGERPRINT: "9abf19cf76beca024ff50411224cdab2999f56e7fd84730abea753a00abd9396"
-    FORGE_DIAGNOSTIC_BATCH_RECORDS: "10"
+    # Reject stale labels or an incomplete Graph walk before any judge runs.
+    FORGE_EXPECTED_MAILBOX_FINGERPRINT: "9abf19cf76beca024ff50411224cdab2999f56e7fd84730abea753a00abd9396"
 
 dataset:
   workspace:
@@ -74,8 +72,9 @@ dataset:
   schema: |
     Each case has:
     - input.yaml: agent prompt for the morning briefing
-    - annotations.yaml: sampled demo4 mailbox answer key, validated against
-      the complete 347-message snapshot and guarded by its fingerprint.
+    - annotations.yaml: answer key reviewed against the 347-message demo4
+      mailbox snapshot. Coverage is gated below; update labels when the
+      mailbox contents change.
 
 outputs:
   - path: output
@@ -115,8 +114,9 @@ judges:
       counts = {row.get("id"): row.get("value") for row in rows
                 if isinstance(row, dict)}
       email = counts.get("email")
+      required = annotations.get("minimum_email_count")
       return (isinstance(email, str) and email.isdecimal()
-              and int(email) > 0)
+              and isinstance(required, int) and int(email) >= required)
     feedback_type: bool
 
   # --- Prioritization judges (morning-briefing case) ---
@@ -283,8 +283,9 @@ judges:
     score_range: [1, 5]
     feedback_type: int
 
-  # Morning-briefing-only diagnostic: the published-artifact gates and the
-  # five semantic quality rubrics above are the complete judge set.
+  # Email-only full-mailbox case: the published-artifact gates and five
+  # semantic rubrics above are the complete judge set. Do not infer Slack
+  # recall or precision from this run.
 
 # Thresholds / regression gating disabled for now — scores are still computed
 # and shown in the report; the run will not exit 1 on low rubric means.
